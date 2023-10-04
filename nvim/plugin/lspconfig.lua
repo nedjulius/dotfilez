@@ -62,6 +62,11 @@ nvim_lsp.clangd.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
