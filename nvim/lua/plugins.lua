@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
   use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'nvimtools/none-ls.nvim'
   use 'windwp/nvim-ts-autotag'
   use 'windwp/nvim-autopairs'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

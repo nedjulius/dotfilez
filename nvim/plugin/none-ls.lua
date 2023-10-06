@@ -1,3 +1,5 @@
+-- none-ls is the community replacement for null-ls
+-- everything is effectivelly the same except origin repo
 local status, null_ls = pcall(require, "null-ls")
 if (not status) then return end
 
