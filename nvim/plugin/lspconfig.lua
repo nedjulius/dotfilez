@@ -1,38 +1,19 @@
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if (not status) then return end
 
-local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc');
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = true }),
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.formatting_seq_sync() end
-    })
-  end
-end
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-nvim_lsp.flow.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.flow.setup { capabilities = capabilities }
 
 nvim_lsp.tsserver.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
-  on_attach = on_attach,
   capabilities = capabilities
 }
 
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.sourcekit.setup { capabilities = capabilities }
 
 nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -45,25 +26,13 @@ nvim_lsp.lua_ls.setup {
   }
 }
 
-nvim_lsp.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.cssls.setup { capabilities = capabilities }
 
-nvim_lsp.anakin_language_server.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.anakin_language_server.setup { capabilities = capabilities }
 
-nvim_lsp.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.clangd.setup { capabilities = capabilities }
 
-nvim_lsp.marksman.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.marksman.setup { capabilities = capabilities }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
