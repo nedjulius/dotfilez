@@ -47,7 +47,6 @@ return require('packer').startup(function(use)
   use { 'catppuccin/nvim', as = 'catppuccin' }
   use {
     'akinsho/bufferline.nvim',
-    after = 'catppuccin',
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons'
   }
