@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
   use {
     'akinsho/bufferline.nvim',
     version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons'
+    requires = { 'nvim-tree/nvim-web-devicons' }
   }
 
   -- automatically set up your configuration after cloning packer.nvim

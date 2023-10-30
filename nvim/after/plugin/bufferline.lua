@@ -18,14 +18,14 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      bg = '#1e2030'
+      bg = '#1e2030',
     },
     background = {
-      bg = '#181926'
+      bg = '#181926',
     },
     separator = {
       fg = '#1e2030',
-      bg = '#181926'
+      bg = '#181926',
     },
     separator_selected = {
       fg = '#1e2030',
@@ -34,7 +34,7 @@ bufferline.setup {
     indicator_selected = {
       bg = '#ed8796',
       fg = '#ed8796',
-    }
+    },
   },
 }
 
