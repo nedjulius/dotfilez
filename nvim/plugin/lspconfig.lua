@@ -28,7 +28,7 @@ nvim_lsp.lua_ls.setup {
 
 nvim_lsp.cssls.setup { capabilities = capabilities }
 
-nvim_lsp.anakin_language_server.setup { capabilities = capabilities }
+nvim_lsp.jedi_language_server.setup { capabilities = capabilities }
 
 nvim_lsp.clangd.setup { capabilities = capabilities }
 
