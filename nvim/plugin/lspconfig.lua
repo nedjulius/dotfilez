@@ -34,6 +34,8 @@ nvim_lsp.clangd.setup { capabilities = capabilities }
 
 nvim_lsp.marksman.setup { capabilities = capabilities }
 
+nvim_lsp.mdx_analyzer.setup { capabilities = capabilities }
+
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
