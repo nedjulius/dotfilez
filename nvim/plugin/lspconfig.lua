@@ -41,6 +41,9 @@ nvim_lsp.clangd.setup { capabilities = capabilities }
 
 nvim_lsp.marksman.setup { capabilities = capabilities }
 
+-- npm install flow-bin
+nvim_lsp.flow.setup {}
+
 nvim_lsp.mdx_analyzer.setup {}
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
