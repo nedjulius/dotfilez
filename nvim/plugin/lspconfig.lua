@@ -15,7 +15,15 @@ nvim_lsp.tsserver.setup {
     "typescript.tsx"
   },
   cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = function(client)
+    if require("lspconfig").util.root_pattern(".flowconfig")(vim.fn.getcwd()) then
+      if client.name == "tsserver" then
+        client.stop()
+        return
+      end
+    end
+  end
 }
 
 nvim_lsp.sourcekit.setup { capabilities = capabilities }
