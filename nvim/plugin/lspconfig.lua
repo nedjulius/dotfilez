@@ -3,6 +3,7 @@ if (not status) then return end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- npm install flow-bin
 nvim_lsp.flow.setup { capabilities = capabilities }
 
 nvim_lsp.tsserver.setup {
@@ -49,12 +50,11 @@ nvim_lsp.clangd.setup { capabilities = capabilities }
 
 nvim_lsp.marksman.setup { capabilities = capabilities }
 
--- npm install flow-bin
-nvim_lsp.flow.setup {}
+nvim_lsp.mdx_analyzer.setup { capabilities = capabilities }
 
-nvim_lsp.mdx_analyzer.setup {}
+nvim_lsp.astro.setup { capabilities = capabilities }
 
-nvim_lsp.astro.setup {}
+nvim_lsp.rust_analyzer.setup { capabilities = capabilities }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
