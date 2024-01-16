@@ -16,6 +16,7 @@ telescope.load_extension('fzf')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('', '<leader>fg', builtin.live_grep, { noremap = true })
+vim.keymap.set('', '<M-p>', builtin.live_grep, { noremap = true })
 vim.keymap.set('', '<leader>fb', builtin.buffers, { noremap = true })
 vim.keymap.set('', '<leader>fh', builtin.help_tags, { noremap = true })
 vim.keymap.set('', '<leader>ff', builtin.find_files, { noremap = true })
