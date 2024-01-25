@@ -8,7 +8,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.eslint.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
+      diagnostics_format = '[eslint] #{m}\n(#{c})',
+      condition = function(utils)
+        return utils.root_has_file({".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs", ".eslintrc.ts"})
+      end,
     }),
     null_ls.builtins.completion.spell,
     null_ls.builtins.formatting.prettier
