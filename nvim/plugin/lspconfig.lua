@@ -56,6 +56,16 @@ nvim_lsp.astro.setup { capabilities = capabilities }
 
 nvim_lsp.rust_analyzer.setup { capabilities = capabilities }
 
+nvim_lsp.eslint.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
+}
+
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
