@@ -46,7 +46,6 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-tree/nvim-tree.lua'
   use 'f-person/git-blame.nvim'
-  use 'folke/tokyonight.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
   use {
     'akinsho/bufferline.nvim',
