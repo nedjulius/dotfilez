@@ -26,16 +26,7 @@ catppuccin.setup {
     mocha = {
       base = '#0c0e16',
       mantle = '#08090e'
-      -- text = '#a6a6a6',
-      -- green = '#e7db74',
-      -- mauve = '#f92672',
-      -- blue = '#66d9ef',
-      -- maroon = '#fd971f',
-      -- yellow = '#a6e22e',
-      -- sky = '#ffffff',
-      -- peach = '#a6e22e',
-      -- overlay2 = '#f4ff00'
-    },
+   },
   },
   custom_highlights = {},
   integrations = {

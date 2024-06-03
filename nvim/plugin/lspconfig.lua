@@ -1,40 +1,35 @@
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if (not status) then return end
 
-local protocol = require('vim.lsp.protocol')
-
-local on_attach = function(client, bufnr)
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = true }),
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.formatting_seq_sync() end
-    })
-  end
-end
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-nvim_lsp.flow.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- npm install flow-bin
+nvim_lsp.flow.setup { capabilities = capabilities }
 
 nvim_lsp.tsserver.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
   cmd = { "typescript-language-server", "--stdio" },
-  on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = function(client)
+    if require("lspconfig").util.root_pattern(".flowconfig")(vim.fn.getcwd()) then
+      if client.name == "tsserver" then
+        client.stop()
+        return
+      end
+    end
+  end
 }
 
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.sourcekit.setup { capabilities = capabilities }
 
 nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -47,19 +42,28 @@ nvim_lsp.lua_ls.setup {
   }
 }
 
-nvim_lsp.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.cssls.setup { capabilities = capabilities }
 
-nvim_lsp.anakin_language_server.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.jedi_language_server.setup { capabilities = capabilities }
 
-nvim_lsp.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
+nvim_lsp.clangd.setup { capabilities = capabilities }
+
+nvim_lsp.marksman.setup { capabilities = capabilities }
+
+nvim_lsp.mdx_analyzer.setup { capabilities = capabilities }
+
+nvim_lsp.astro.setup { capabilities = capabilities }
+
+nvim_lsp.rust_analyzer.setup { capabilities = capabilities }
+
+nvim_lsp.eslint.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
 }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -90,7 +94,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gd', function()
+      vim.cmd([[ tab split ]])
+      vim.lsp.buf.definition()
+    end, opts)
     vim.keymap.set('n', 'gv', function()
       vim.cmd([[ vsplit ]])
       vim.lsp.buf.definition()

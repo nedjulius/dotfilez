@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -9,22 +10,23 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/nvim-cmp',
+  'L3MON4D3/LuaSnip',
   'neovim/nvim-lspconfig',
-  'jose-elias-alvarez/null-ls.nvim',
+  'nvim-tools/none-ls.nvim',
   'windwp/nvim-ts-autotag',
   'windwp/nvim-autopairs',
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  'nvim-treesitter/nvim-treesitter-context',
   'nvim-lualine/lualine.nvim',
   'nvim-lua/plenary.nvim',
   {
-    'nvim-telescope/telescope.nvim',
+   'nvim-telescope/telescope.nvim',
     tag = '0.1.3',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
@@ -34,20 +36,20 @@ require("lazy").setup({
   {
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
-    config = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    config = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
     ft = "markdown"
   },
   'numToStr/Comment.nvim',
   'nvim-tree/nvim-web-devicons',
   'nvim-tree/nvim-tree.lua',
   'f-person/git-blame.nvim',
-  'folke/tokyonight.nvim',
-
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   {
     'akinsho/bufferline.nvim',
     version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons'
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
   }
 })
 

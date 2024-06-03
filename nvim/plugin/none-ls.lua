@@ -1,3 +1,5 @@
+-- none-ls is the community replacement for null-ls
+-- everything is effectivelly the same except origin repo
 local status, null_ls = pcall(require, "null-ls")
 if (not status) then return end
 
@@ -5,9 +7,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
-    }),
     null_ls.builtins.completion.spell,
     null_ls.builtins.formatting.prettier
   },

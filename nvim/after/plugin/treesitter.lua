@@ -2,7 +2,27 @@ local status, treesitter = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
 treesitter.setup {
-  ensure_installed = { "c", "lua", "rust", "cpp", "javascript", "java", "html", "css", "json", "markdown", "scala", "yaml", "typescript", "python", "http", "regex", "tsx", "bash" },
+  ensure_installed = {
+    "c",
+    "lua",
+    "rust",
+    "cpp",
+    "javascript",
+    "java",
+    "html",
+    "css",
+    "json",
+    "markdown",
+    "scala",
+    "yaml",
+    "typescript",
+    "python",
+    "http",
+    "regex",
+    "tsx",
+    "bash",
+    "astro"
+  },
   sync_install = false,
   auto_install = true,
   ignore_install = {},
@@ -11,8 +31,5 @@ treesitter.setup {
     disable = {},
     additional_vim_regex_highlighting = false,
   },
-  autotag = {
-    enable = true,
-  }
 }
 
