@@ -24,3 +24,10 @@ keymap.set('n', '[n', vim.diagnostic.goto_next)
 -- reload config without restart
 keymap.set('n', '<leader>rr', ':so %<CR>')
 
+--
+-- Add resize window commands
+-- Add splitting window commands
+-- Add window navigation commands
+-- Figure out vim fugitive / git workflow
+-- Shorten buffer jumping
+-- Show buffer list command (sb or something)
