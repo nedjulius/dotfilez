@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
     'numToStr/Comment.nvim',
     requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   }
+  use 'nvim-tree/nvim-web-devicons'
   use 'nvim-tree/nvim-tree.lua'
   use 'f-person/git-blame.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
