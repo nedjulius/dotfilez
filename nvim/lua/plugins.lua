@@ -47,12 +47,7 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'f-person/git-blame.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
-  use {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    requires = { 'nvim-tree/nvim-web-devicons' }
-  }
-
+  use 'Shatur/neovim-ayu'
   -- automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()

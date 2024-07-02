@@ -1,3 +1,6 @@
+-- set leader key
+vim.g.mapleader = ","
+
 local keymap = vim.keymap
 
 -- local find and replace
@@ -24,3 +27,13 @@ keymap.set('n', '[n', vim.diagnostic.goto_next)
 -- reload config without restart
 keymap.set('n', '<leader>rr', ':so %<CR>')
 
+-- buffers
+keymap.set('n', '<leader>bp', ':bprev<CR>')
+keymap.set('n', '<leader>bn', ':bnext<CR>')
+
+-- Add resize window commands
+-- Add splitting window commands
+-- Add window navigation commands
+-- Figure out vim fugitive / git workflow
+-- Shorten buffer jumping
+-- Show buffer list command (sb or something)

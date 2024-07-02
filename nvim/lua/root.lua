@@ -43,6 +43,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.mouse = ""
+vim.opt.hidden = true
 
 vim.opt.path:append { '**' }
 vim.opt.formatoptions:append { 'r' }
