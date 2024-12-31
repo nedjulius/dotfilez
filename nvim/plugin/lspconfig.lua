@@ -79,7 +79,7 @@ vim.diagnostic.config({
   },
   update_in_insert = true,
   float = {
-    source = "always"
+    source = "if_many"
   }
 })
 
@@ -94,10 +94,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', function()
-      vim.cmd([[ tab split ]])
-      vim.lsp.buf.definition()
-    end, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gv', function()
       vim.cmd([[ vsplit ]])
       vim.lsp.buf.definition()

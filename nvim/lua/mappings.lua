@@ -16,6 +16,7 @@ keymap.set('', '<F6>', ':NvimTreeToggle<CR>')
 -- git-blame.nvim mappings
 keymap.set('', '<leader>bt', ':GitBlameToggle<CR>')
 keymap.set('', '<leader>bo', ':GitBlameOpenFileURL<CR>')
+
 vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
 
