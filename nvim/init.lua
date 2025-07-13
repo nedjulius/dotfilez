@@ -1,9 +1,6 @@
-require('root')
-require('plugins')
-require('mappings')
-
--- CONFIG --
+-- config --
 vim.cmd("autocmd!")
+
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -64,30 +61,41 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.cmd([[let &t_ZH="\e[3m"]])
 vim.cmd([[let &t_ZR="\e[23m"]])
 
--- MAPPINGS --
+-- mappings --
 local keymap = vim.keymap
 keymap.set('', 'gr', '*:%s//<C-R>/', { noremap = true }) -- local find and replace
 keymap.set('n', '<C-L>', ':nohlsearch<CR>', { noremap = true }) -- remove highlight search
+
 -- nvim-tree mappings
 keymap.set('', '<C-n>', ':NvimTreeToggle<CR>')
 keymap.set('', '<F6>', ':NvimTreeToggle<CR>')
+
 -- git-blame.nvim mappings
 keymap.set('', '<leader>bt', ':GitBlameToggle<CR>')
 keymap.set('', '<leader>bo', ':GitBlameOpenFileURL<CR>')
 vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
+
 -- setup vim diagnostic float
 keymap.set('n', '<space>e', vim.diagnostic.open_float)
 keymap.set('n', '[p', vim.diagnostic.goto_prev)
 keymap.set('n', '[n', vim.diagnostic.goto_next)
+
 -- reload config without restart
 keymap.set('n', '<leader>rr', ':so %<CR>')
+
 -- buffers
 keymap.set('n', '<leader>bp', ':bprev<CR>')
 keymap.set('n', '<leader>bn', ':bnext<CR>')
 
+-- Add resize window commands
+-- Add splitting window commands
+-- Add window navigation commands
+-- Figure out vim fugitive / git workflow
+-- Shorten buffer jumping
+-- Show buffer list command (sb or something)
 
--- BOOTSTRAP LAZY.NVIM --
+-- bootstrap lazy.nvim --
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -104,11 +112,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- PLUGINS -- 
+-- plugins -- 
 require("lazy").setup({
   spec = {
     { 'nvim-lualine/lualine.nvim', opts = {} },
-    { 'nvim-lua/plenary.nvim', opts = {} },
+    { 'nvim-lua/plenary.nvim' },
     {
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
@@ -129,7 +137,7 @@ require("lazy").setup({
 
         return {
           { '<leader>/', builtin.live_grep, desc = 'File grep' },
-          { '<C-p>', builtin.find_files, desc = 'Find files' },
+          { '<D-p>', builtin.find_files, desc = 'Find files' },
           { '<leader>fh', builtin.help_tags, desc = 'Help tags' },
           {
             "<leader>fb",
@@ -149,17 +157,25 @@ require("lazy").setup({
         html = { mode = 'foreground' }
       }
     },
-    { 'lewis6991/gitsigns.nvim', opts = {} },
-    { 'JoosepAlviste/nvim-ts-context-commentstring', opts = {} },
-    {
-      'numToStr/Comment.nvim',
-      dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-      opts = {}
-    },
+    { 'lewis6991/gitsigns.nvim' },
+    { 'numToStr/Comment.nvim', },
     { 'nvim-tree/nvim-web-devicons', opts = {} },
     { 'nvim-tree/nvim-tree.lua', opts = {} },
+    {
+      'windwp/nvim-ts-autotag',
+      opts = {
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = false -- Auto close on trailing </
+      }
+    },
     { 'f-person/git-blame.nvim', opts = {} },
-    { 'Shatur/neovim-ayu', opts = {} }
+    {
+      'Shatur/neovim-ayu',
+      config = function()
+        vim.cmd('colorscheme ayu-dark')
+      end,
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
