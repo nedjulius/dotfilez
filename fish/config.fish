@@ -8,9 +8,6 @@ set fish_greeting ""
 # Print a new line after any command
 source ~/.config/fish/functions/postexec_newline.fish
 
-# Setup brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Auto-switch nvm version on cd
 # Requires a ~/.node-version file with a valid node version
 # https://github.com/jorgebucaran/nvm.fish/pull/186
