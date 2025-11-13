@@ -137,7 +137,7 @@ require("lazy").setup({
 
         return {
           { '<leader>/', builtin.live_grep, desc = 'File grep' },
-          { '<D-p>', builtin.find_files, desc = 'Find files' },
+          { '<leader>p', builtin.find_files, desc = 'Find files' },
           { '<leader>fh', builtin.help_tags, desc = 'Help tags' },
           {
             "<leader>fb",
@@ -159,8 +159,52 @@ require("lazy").setup({
     },
     { 'lewis6991/gitsigns.nvim' },
     { 'numToStr/Comment.nvim', },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      branch = 'master',
+      lazy = false,
+      build = ':TSUpdate',
+      opts = {
+        ensure_installed = {
+          "c",
+          "lua",
+          "rust",
+          "cpp",
+          "javascript",
+          "java",
+          "html",
+          "css",
+          "json",
+          "markdown",
+          "scala",
+          "yaml",
+          "typescript",
+          "python",
+          "http",
+          "regex",
+          "tsx",
+          "bash",
+          "astro"
+        },
+        sync_install = false,
+        auto_install = true,
+        ignore_install = {},
+        highlight = {
+          enable = true,
+          disable = {},
+          additional_vim_regex_highlighting = false,
+        },
+      }
+    },
     { 'nvim-tree/nvim-web-devicons', opts = {} },
-    { 'nvim-tree/nvim-tree.lua', opts = {} },
+    {
+      'nvim-tree/nvim-tree.lua',
+      opts = {
+        open_on_setup = false,
+        open_on_setup_file = false,
+        open_on_tab = false,
+      },
+    },
     {
       'windwp/nvim-ts-autotag',
       opts = {
@@ -169,13 +213,20 @@ require("lazy").setup({
         enable_close_on_slash = false -- Auto close on trailing </
       }
     },
-    { 'f-person/git-blame.nvim', opts = {} },
+    {
+      'f-person/git-blame.nvim',
+      event = "VeryLazy",
+      opts = {
+        enabled = true,
+      },
+    },
     {
       'Shatur/neovim-ayu',
       config = function()
         vim.cmd('colorscheme ayu-dark')
       end,
     },
+    { import = "plugin" }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

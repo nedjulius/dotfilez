@@ -3,9 +3,6 @@ if (not status) then return end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- npm install flow-bin
-nvim_lsp.flow.setup { capabilities = capabilities }
-
 nvim_lsp.tsserver.setup {
   filetypes = {
     "javascript",
@@ -17,14 +14,6 @@ nvim_lsp.tsserver.setup {
   },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
-  on_attach = function(client)
-    if require("lspconfig").util.root_pattern(".flowconfig")(vim.fn.getcwd()) then
-      if client.name == "tsserver" then
-        client.stop()
-        return
-      end
-    end
-  end
 }
 
 nvim_lsp.sourcekit.setup { capabilities = capabilities }
