@@ -3,9 +3,6 @@ if (not status) then return end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- npm install flow-bin
-nvim_lsp.flow.setup { capabilities = capabilities }
-
 nvim_lsp.tsserver.setup {
   filetypes = {
     "javascript",
@@ -17,14 +14,6 @@ nvim_lsp.tsserver.setup {
   },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
-  on_attach = function(client)
-    if require("lspconfig").util.root_pattern(".flowconfig")(vim.fn.getcwd()) then
-      if client.name == "tsserver" then
-        client.stop()
-        return
-      end
-    end
-  end
 }
 
 nvim_lsp.sourcekit.setup { capabilities = capabilities }
@@ -79,7 +68,7 @@ vim.diagnostic.config({
   },
   update_in_insert = true,
   float = {
-    source = "always"
+    source = "if_many"
   }
 })
 
@@ -94,10 +83,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', function()
-      vim.cmd([[ tab split ]])
-      vim.lsp.buf.definition()
-    end, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gv', function()
       vim.cmd([[ vsplit ]])
       vim.lsp.buf.definition()
